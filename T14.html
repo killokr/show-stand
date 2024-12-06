@@ -1,0 +1,104 @@
+	<style type="text/css">
+		*{ margin: 0; padding: 0; text-decoration: none; list-style-type: none; }
+		html{ background-color: #343334; }
+		body{ background: radial-gradient(#D1D1D1,transparent); overflow-x: hidden; }
+		#back{ pointer-events: none; }
+		span.pixal{ position: absolute; left: -5px; top: -5px; width: 4px; height: 4px; background-color: #fff; z-index: 6; }
+		.container{ width: 90%; margin: 0 auto; }
+		a img{ width: 100%; height: 100%; }
+		.toper{ overflow: hidden; }
+		.toper img{ width: 100%; height: 200px; float: left; }
+		.header{ height: 40px; line-height: 40px; background-color: #000; color: #fff; }
+		.header li{ float: left; width: 100px; text-align: center; cursor: pointer; } 
+		.header li a{ color: #fff; }
+		.main{ margin: 50px 0; }
+		.main .container{ width: 1228px; }
+		.main .works{ position: relative; border: 1px solid #FFCB6B; height: 655px; }
+		.main .works .works_tocket{ position: absolute; background-color: #FFB52D; color: #FF0900; width: 90px; height: 35px; text-align: center; line-height: 35px; top: -30px; left: 10px; }
+		.footer{ height: 150px; background: linear-gradient(to top,#000,#3E3E3E,transparent); color: #fff; text-align: center; position: relative; }
+		.footer .context{ transform: translate(-50%,-50%); position: absolute; top: 50%; left: 50%; }
+		.footer .context p:first-child{ margin-bottom: 10px; }
+		/*首页*/
+
+		#ani{ position: absolute; background-color: #0af; border-radius: 30%; box-shadow: 0 0 10px #058; padding: 50px; min-width: 220px; text-align: center; }
+		</style>
+
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			// 潜 10px 10px    top left
+			// 越 510px 920px
+			// 文 潜 1px 1.17em  越 6.18em 86px
+			let obj = document.querySelector("#ani");
+			let lowerTop = 10;
+			let lowerLeft = 10;
+			let bigerTop = 510;
+			let bigerLeft = 920;
+			let bigerFont = 60;
+			let paceX = 4;
+			let paceY = 4;
+			let paceF = 0.5;
+			// left： 4*299=1196 1207-1196=11(初始)
+			// top：  4*156=624  635-624=11(初始)  4*156+11=635
+			obj.style.top = "11px";
+			obj.style.left = "11px";
+			obj.style.fontSize = "18px";
+			function ani(){  
+				bigerLeft = 1207 - obj.offsetWidth;
+				bigerTop = 635 - obj.offsetHeight;
+				let top = parseInt(obj.style.top) + paceY;
+				let left = parseInt(obj.style.left) + paceX;
+				let font = parseFloat(obj.style.fontSize) + paceF;
+
+				if (top > bigerTop || top < lowerTop) (paceY = -paceY);
+				if (left > bigerLeft || left < lowerLeft) (paceX = -paceX);
+				if (font > bigerFont || font < 2) (paceF = -paceF);
+
+				obj.style.top = top + "px";
+				obj.style.left = left + "px";
+				obj.style.fontSize = font + "px" ;
+				console.log(paceX,left,obj.offsetWidth);
+				window.requestAnimationFrame(ani);
+			}
+			ani();
+		}
+	</script>
+	<div id="back"></div>
+	<div class="toper">
+		<img src="images/toper.jpg">
+	</div>
+	<ul class="header">
+		<div class="container">
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="javascript:;">JS作品</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习教程</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习视频</a>
+			</li>
+			<li>
+				<a href="javascript:;">论坛</a>
+			</li>
+		</div>
+	</ul>
+	<div class="main">
+		<div class="container">
+			<div class="works">
+				<div class="works_tocket">作品展示</div>
+				<h3 id="ani">欢迎来到前端加油站！</h3>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="context">
+				<p>2023.6版权所有©信息工程系322移动应用开发1班</p>
+				<p>设计制作：22303590133 唐亿林</p>
+			</div>
+		</div>
+ 	</div>

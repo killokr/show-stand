@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{ margin: 0; padding: 0; text-decoration: none; list-style-type: none; }
+		html{ background-color: #343334; }
+		body{ background: radial-gradient(#D1D1D1,transparent); overflow-x: hidden; }
+		#back{ pointer-events: none; }
+		span.pixal{ position: absolute; left: -5px; top: -5px; width: 4px; height: 4px; background-color: #fff; z-index: 6; }
+		.container{ width: 90%; margin: 0 auto; }
+		a img{ width: 100%; height: 100%; }
+		.toper{ overflow: hidden; }
+		.toper img{ width: 100%; height: 200px; float: left; }
+		.header{ height: 40px; line-height: 40px; background-color: #000; color: #fff; }
+		.header li{ float: left; width: 100px; text-align: center; cursor: pointer; } 
+		.header li a{ color: #fff; }
+		.main{ margin: 50px 0; }
+		.main .container{ width: 1228px; }
+		.main .works{ position: relative; border: 1px solid #FFCB6B; height: 655px; }
+		.main .works .works_tocket{ position: absolute; background-color: #FFB52D; color: #FF0900; width: 90px; height: 35px; text-align: center; line-height: 35px; top: -30px; left: 10px; }
+		.footer{ height: 150px; background: linear-gradient(to top,#000,#3E3E3E,transparent); color: #fff; text-align: center; position: relative; }
+		.footer .context{ transform: translate(-50%,-50%); position: absolute; top: 50%; left: 50%; }
+		.footer .context p:first-child{ margin-bottom: 10px; }
+		/*首页*/
+		.login_dialog{ width: 400px; height: 300px; background: transparent; border: 1px solid #fff; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); display: flex; justify-content: center; align-items: center; border-radius: 30px; }	
+		.ui{ list-style-type: none; text-align: center; }
+		.ui li input{ outline: none; border: none; background-color: transparent; border-bottom: 1px solid #fff; color: #fff; font-size: 20px; padding: 5px; box-sizing: border-box; margin-bottom: 11px; }
+		#login{ outline: none; font-size: 20px; border: 1px solid #fff; padding: 5px; background-color: transparent; color: #fff; width: 150px; border-radius: 5px; transition: 0.2s linear; margin-top: 10px; cursor: pointer; }
+		#login:hover{ background-color: #fff; color: #000; border: 1px solid #000; }
+		span.pixal{ position: absolute; left: -5px; top: -5px; width: 4px; height: 4px; background-color: #fff; }
+
+		#box{ width: 40%; background-color: #fff; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+		#title{ position: absolute; top: -40px; width: 100%; height: 40px; background-color: #CCEEEC; text-align: center; line-height: 40px; text-overflow: ellipsis; overflow: hidden; }
+		#btn{ position: absolute; bottom: -40px; width: 100%; height: 40px; background-color: #CCEEEC; text-align: center; line-height: 40px; text-overflow: ellipsis; overflow: hidden; cursor: pointer; }
+		#background{ width: 100%; height: 100%; position: fixed; background-color: rgba(0,0,0,.3); top: 0; }
+	</style>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			let rusn = "root";
+			let rpwd = "123456";
+			let usn = document.querySelector("#username");
+			let pwd = document.querySelector("#pwd");
+			let btn = document.querySelector("#login");
+			btn.onclick = function() {
+				if (usn.value == rusn && pwd.value == rpwd) {
+					myAlert(true);
+					setTimeout(()=>location.href = "index.html",10000);
+				}else{
+					myAlert(false);
+				}
+			}
+
+			// 复用
+			function myAlert(flag){
+				let box = document.createElement("div");
+				let title = document.createElement("h4");
+				let btn = document.createElement("h4");
+				let background = document.createElement("div");
+				background.id = "background";
+				box.id = "box";
+				title.id = "title";
+				btn.id = "btn";
+				if (flag) title.innerText = "登陆成功！";
+				else title.innerText = "账号或密码有误，请重新尝试！";
+				btn.innerText = "确认";
+				if (document.body) document.body.appendChild(background);
+				else document.documentELement.appendChild(background);
+				background.appendChild(box);
+				box.appendChild(title);
+				box.appendChild(btn);
+				btn.onclick = function(){
+					if (document.body) document.body.removeChild(background);
+					else document.documentELement.removeChild(background);
+					(flag) && (location.href = "index.html");
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="back"></div>
+	<div class="toper">
+		<img src="images/toper.jpg">
+	</div>
+	<ul class="header">
+		<div class="container">
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="javascript:;">JS作品</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习教程</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习视频</a>
+			</li>
+			<li>
+				<a href="javascript:;">论坛</a>
+			</li>
+		</div>
+	</ul>
+	<div class="main">
+		<div class="container">
+			<div class="works">
+				<div class="works_tocket">作品展示</div>
+				<div class="login_dialog">
+					<ul class="ui">
+						<li><input type="text" name="username" id="username" placeholder="USERNAME"></li>
+						<li><input type="password" name="pwd" id="pwd" placeholder="PASSWORD"></li>
+						<li><button id="login">LOGIN</button></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="context">
+				<p>2023.6版权所有©信息工程系322移动应用开发1班</p>
+				<p>设计制作：22303590133 唐亿林</p>
+			</div>
+		</div>
+ 	</div>
+</body>
+</html>

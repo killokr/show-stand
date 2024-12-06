@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{ margin: 0; padding: 0; text-decoration: none; list-style-type: none; }
+		html{ background-color: #343334; }
+		body{ background: radial-gradient(#D1D1D1,transparent); overflow-x: hidden; }
+		#back{ pointer-events: none; }
+		span.pixal{ position: absolute; left: -5px; top: -5px; width: 4px; height: 4px; background-color: #fff; z-index: 6; }
+		.container{ width: 90%; margin: 0 auto; }
+		a img{ width: 100%; height: 100%; }
+		.toper{ overflow: hidden; }
+		.toper img{ width: 100%; height: 200px; float: left; }
+		.header{ height: 40px; line-height: 40px; background-color: #000; color: #fff; }
+		.header li{ float: left; width: 100px; text-align: center; cursor: pointer; } 
+		.main{ margin: 50px 0; }
+		.main .container{ width: 1228px; }
+		.main .recommend , .main .hot{ position: relative; border: 1px solid #FFCB6B; }
+		.main .recommend .recommend_tocket , .main .hot .hot_tocket{ position: absolute; background-color: #FFB52D; color: #FF0900; width: 90px; height: 35px; text-align: center; line-height: 35px; top: -30px; left: 10px; }
+		.main .recommend .list1 , .main .hot .list2{ display: flex; justify-content: space-between; padding: 20px 30px; }
+		.main .hot .list2 a:first-child{ margin-bottom: 10px; }
+		.main .recommend .list1 a , .main .hot .list2 a{ display: inline-block; width: 200px; height: 170px; border: 1px solid #eee; position: relative; }
+		.main .recommend .list1 a span , .main .hot .list2 a span{ display: inline-block; background-color: rgba(0,0,0,.7); color: #fff; width: 100%; height: 40px; bottom: 0; left: 0; text-align: center; line-height: 40px; position: absolute; }
+		.main .hot{ margin-top: 45px; } 
+		.main .hot .list2{ flex-wrap: wrap; }
+		.footer{ height: 150px; background: linear-gradient(to top,#000,#3E3E3E,transparent); color: #fff; text-align: center; position: relative; }
+		.footer .context{ transform: translate(-50%,-50%); position: absolute; top: 50%; left: 50%; }
+		.footer .context p:first-child{ margin-bottom: 10px; }
+	</style>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+
+		}
+	</script>
+</head>
+<body>
+	<div id="back"></div>
+	<div class="toper">
+		<img src="images/toper.jpg">
+	</div>
+	<ul class="header">
+		<div class="container">
+			<li>首页</li>
+			<li>JS作品</li>
+			<li>学习教程</li>
+			<li>学习视频</li>
+			<li>论坛</li>
+		</div>
+	</ul>
+	<div class="main">
+		<div class="container">
+			<div class="recommend">
+				<div class="recommend_tocket">推荐作品</div>
+				<div class="list1">
+					<a href="T1.html">
+						<img src="images/1.jpg">
+						<span>打字机效果</span>
+					</a>
+					<a href="2.html">
+						<img src="images/2.png">
+						<span>鼠标移入小图查看大图</span>
+					</a>
+					<a href="3.html">
+						<img src="images/3.jpg">
+						<span>选项卡切换</span>
+					</a>
+					<a href="4.html">
+						<img src="images/4.jpg">
+						<span>网页换皮肤</span>
+					</a>
+					<a href="5.html">
+						<img src="images/5.jpg">
+						<span>自动关闭广告</span>
+					</a>
+				</div>
+			</div>
+			<div class="hot">
+				<div class="hot_tocket">热门作品</div>
+				<div class="list2">
+					<a href="T6.html">
+						<img src="images/6.jpg">
+						<span>限制文本框输入宇数</span>
+					</a>
+					<a href="7.html">
+						<img src="images/7.jpg">
+						<span>鼠标移入切换图片</span>
+					</a>
+					<a href="8.html">
+						<img src="images/8.jpg">
+						<span>图片数字显示时间</span>
+					</a>
+					<a href="T9.html">
+						<img src="images/9.jpg">
+						<span>JS实现二级联动菜单</span>
+					</a>
+					<a href="T10.html">
+						<img src="images/10.png">
+						<span>滚动字幕</span>
+					</a>
+					<a href="T11.html">
+						<img src="images/11.jpg">
+						<span>登录验证</span>
+					</a>
+					<a href="T12.html">
+						<img src="images/12.jpg">
+						<span>显隐二级菜单</span>
+					</a>
+					<a href="T13.html">
+						<img src="images/13.jpg">
+						<span>升降文字</span>
+					</a>
+					<a href="T14.html">
+						<img src="images/14.jpg">
+						<span>文字大小变化</span>
+					</a>
+					<a href="T15.html">
+						<img src="images/15.jpg">
+						<span>猜数小游戏</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="context">
+				<p>2023.6版权所有©信息工程系322移动应用开发1班</p>
+				<p>设计制作：22303590133 唐亿林</p>
+			</div>
+		</div>
+ 	</div>
+</body>
+</html>

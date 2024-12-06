@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>name</title>
+	<style type="text/css">
+		*{ margin: 0; padding: 0; text-decoration: none; list-style-type: none; }
+		html{ background-color: #343334; }
+		body{ background: radial-gradient(#D1D1D1,transparent); overflow-x: hidden; }
+		#back{ pointer-events: none; }
+		span.pixal{ position: absolute; left: -5px; top: -5px; width: 4px; height: 4px; background-color: #fff; z-index: 6; }
+		.container{ width: 90%; margin: 0 auto; }
+		a img{ width: 100%; height: 100%; }
+		.toper{ overflow: hidden; }
+		.toper img{ width: 100%; height: 200px; float: left; }
+		.header{ height: 40px; line-height: 40px; background-color: #000; color: #fff; }
+		.header li{ float: left; width: 100px; text-align: center; cursor: pointer; } 
+		.header li a{ color: #fff; }
+		.main{ margin: 50px 0; }
+		.main .container{ width: 1228px; }
+		.main .works{ position: relative; border: 1px solid #FFCB6B; height: 655px; }
+		.main .works .works_tocket{ position: absolute; background-color: #FFB52D; color: #FF0900; width: 90px; height: 35px; text-align: center; line-height: 35px; top: -30px; left: 10px; }
+		.footer{ height: 150px; background: linear-gradient(to top,#000,#3E3E3E,transparent); color: #fff; text-align: center; position: relative; }
+		.footer .context{ transform: translate(-50%,-50%); position: absolute; top: 50%; left: 50%; }
+		.footer .context p:first-child{ margin-bottom: 10px; }
+		/*首页*/
+		body{
+			font-family: '微软雅黑';
+		}
+		.box{
+			position: relative;
+			border: 1px solid #e0e0e0;
+			width: 600px;
+			height: 400px;
+			cursor: pointer;
+			text-align: center;
+			top: 40%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+		.box div{
+			width: 100%;
+			height: 100%;
+		}
+		.box h3{
+			background-color: #ff6666;
+			height: 50px;
+			line-height: 50px;
+		}
+		.box span{
+			display: block;
+			background-color: #ff6655;
+			height: 50px;
+			line-height: 50px;
+		}
+		.box img{
+			width: 100%;
+			height: 100%;
+		}
+		.box #yes{
+			width: 135px;
+			height: 154px;
+			position: absolute;
+			top: 232px;
+			left: 65px;
+			display: block;
+			cursor: pointer;
+		}
+	</style>
+	<script type="text/javascript" src="js/index.js"></script>
+</head>
+<body>
+	<div id="back"></div>
+	<div class="toper">
+		<img src="images/toper.jpg">
+	</div>
+	<ul class="header">
+		<div class="container">
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="javascript:;">JS作品</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习教程</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习视频</a>
+			</li>
+			<li>
+				<a href="javascript:;">论坛</a>
+			</li>
+		</div>
+	</ul>
+	<div class="main">
+		<div class="container">
+			<div class="works">
+				<div class="works_tocket">作品展示</div>
+				<div class="box">
+					<h3>自动关闭广告</h3>
+					<div>
+						<img src="images/kun's invite.jpg" id="img">
+						<span>该广告将在2.5秒后关闭</span>
+					</div>
+					<i id="yes"></i>
+				</div>
+			</div>
+		</div>
+			
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="context">
+				<p>2023.6版权所有©信息工程系322移动应用开发1班</p>
+				<p>设计制作：22303590133 唐亿林</p>
+			</div>
+		</div>
+ 	</div>
+	
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		var yes = document.getElementById('yes');
+		var img = document.getElementById('img');
+		var span = img.nextElementSibling;
+		var rk = setTimeout(function(){
+			img.remove();
+			yes.remove();
+			span.innerText = "期待下次会面";
+		},2500);
+		yes.onclick = function(){
+			clearInterval(rk);
+			img.src = "images/kun.jpg";
+			span.innerText = "感谢您的反馈";
+			console.log(span);
+		}
+	</script>
+</body>
+</html>

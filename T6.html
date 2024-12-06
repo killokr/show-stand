@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{ margin: 0; padding: 0; text-decoration: none; list-style-type: none; }
+		html{ background-color: #343334; }
+		body{ background: radial-gradient(#D1D1D1,transparent); overflow-x: hidden; }
+		#back{ pointer-events: none; }
+		span.pixal{ position: absolute; left: -5px; top: -5px; width: 4px; height: 4px; background-color: #fff; z-index: 6; }
+		.container{ width: 90%; margin: 0 auto; }
+		a img{ width: 100%; height: 100%; }
+		.toper{ overflow: hidden; }
+		.toper img{ width: 100%; height: 200px; float: left; }
+		.header{ height: 40px; line-height: 40px; background-color: #000; color: #fff; }
+		.header li{ float: left; width: 100px; text-align: center; cursor: pointer; } 
+		.header li a{ color: #fff; }
+		.main{ margin: 50px 0; }
+		.main .container{ width: 1228px; }
+		.main .works{ position: relative; border: 1px solid #FFCB6B; height: 655px; }
+		.main .works .works_tocket{ position: absolute; background-color: #FFB52D; color: #FF0900; width: 90px; height: 35px; text-align: center; line-height: 35px; top: -30px; left: 10px; }
+		.footer{ height: 150px; background: linear-gradient(to top,#000,#3E3E3E,transparent); color: #fff; text-align: center; position: relative; }
+		.footer .context{ transform: translate(-50%,-50%); position: absolute; top: 50%; left: 50%; }
+		.footer .context p:first-child{ margin-bottom: 10px; }
+		/*首页*/
+		textarea{ max-width: 60%; max-height: 40%; min-width: 60%; min-height: 40%; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); padding: 10px; resize: none; }
+		#msg{ width: 100vw; height: 100vh; background-color: rgba(0,0,0,.6); z-index: 9; position: fixed; top: 0; }
+		input{ display: block; width: calc(100% - 4px); height: 100%; font-size: 60px; }
+		#box{ width: 40%; height: 35%; background-color: #fff; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+		#title{ position: absolute; top: -40px; width: 100%; height: 40px; background-color: #CCEEEC; text-align: center; line-height: 40px; text-overflow: ellipsis; overflow: hidden; }
+		#btn{ position: absolute; bottom: -40px; width: 100%; height: 40px; background-color: #CCEEEC; text-align: center; line-height: 40px; text-overflow: ellipsis; overflow: hidden; cursor: pointer; }
+		#tips{ position: fixed; right: 50px; top: 50%; width: 10%; height: 200px; background-color: skyblue; padding-left: 5px; }
+		#tips span{ display: block; }
+	</style>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			let div = document.createElement("div");
+			let box = document.createElement("div");
+			let title = document.createElement("h4");
+			let msg = document.createElement("input");
+			let btn = document.createElement("h4");
+			let num = 0;
+			let textarea = document.querySelector("textarea");
+			let tips = document.querySelector("#tips span");
+			box.id = "box";
+			title.id = "title";
+			div.id = "msg";
+			btn.id = "btn";
+			msg.type = "text";
+			title.innerText = "你好，我是作文字数限制助手，请输入你本次写作的字数";
+			btn.innerText = "确认";
+			add();
+			textarea.oninput = function(){
+				if (textarea.value.length > num) {
+					textarea.value = textarea.value.slice(0,num);
+				}
+				tips.innerText = `${textarea.value.length}
+					最大字数：
+					${num}`;
+			}
+
+			btn.onclick = function(){
+				if (!isNaN(parseInt(msg.value))) {
+					num = parseInt(msg.value);
+					if (document.body) document.body.removeChild(div);
+					else document.documentELement.removeChild(div);
+					tips.innerText = `0
+					最大字数：
+					${num}`;
+					alert("请注意：我们不会保存任何数据，当你要离开网页时，请记得自己保存数据")
+				}
+				
+			}
+
+			function add(){
+				if (document.body) document.body.appendChild(div);
+				else document.documentELement.appendChild(div);
+				div.appendChild(box);
+				box.appendChild(msg);
+				box.appendChild(title);
+				box.appendChild(btn);
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div id="back"></div>
+	<div class="toper">
+		<img src="images/toper.jpg">
+	</div>
+	<ul class="header">
+		<div class="container">
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="javascript:;">JS作品</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习教程</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习视频</a>
+			</li>
+			<li>
+				<a href="javascript:;">论坛</a>
+			</li>
+		</div>
+	</ul>
+	<div class="main">
+		<div class="container">
+			<div class="works">
+				<div class="works_tocket">作品展示</div>
+				<textarea></textarea>
+				<p id="tips">
+					已输入字数：
+					<span></span>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="context">
+				<p>2023.6版权所有©信息工程系322移动应用开发1班</p>
+				<p>设计制作：22303590133 唐亿林</p>
+			</div>
+		</div>
+ 	</div>
+	
+</body>
+</html>

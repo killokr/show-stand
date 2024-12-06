@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>name</title>
+		<style>
+			*{ margin: 0; padding: 0; text-decoration: none; list-style-type: none; }
+			html{ background-color: #343334; }
+			body{ background: radial-gradient(#D1D1D1,transparent); overflow-x: hidden; }
+			#back{ pointer-events: none; }
+			span.pixal{ position: absolute; left: -5px; top: -5px; width: 4px; height: 4px; background-color: #fff; z-index: 6; }
+			.container{ width: 90%; margin: 0 auto; }
+			a img{ width: 100%; height: 100%; }
+			.toper{ overflow: hidden; }
+			.toper img{ width: 100%; height: 200px; float: left; }
+			.header{ height: 40px; line-height: 40px; background-color: #000; color: #fff; }
+			.header li{ float: left; width: 100px; text-align: center; cursor: pointer; } 
+			.header li a{ color: #fff; }
+			.main{ margin: 50px 0; }
+			.main .container{ width: 1228px; }
+			.main .works{ position: relative; border: 1px solid #FFCB6B; height: 655px; }
+			.main .works .works_tocket{ position: absolute; background-color: #FFB52D; color: #FF0900; width: 90px; height: 35px; text-align: center; line-height: 35px; top: -30px; left: 10px; }
+			.footer{ height: 150px; background: linear-gradient(to top,#000,#3E3E3E,transparent); color: #fff; text-align: center; position: relative; }
+			.footer .context{ transform: translate(-50%,-50%); position: absolute; top: 50%; left: 50%; }
+			.footer .context p:first-child{ margin-bottom: 10px; }
+			/*首页*/
+			#clock{
+				width: 400px;
+				height: 400px;
+				border-radius: 200px;
+				background-color: cornflowerblue;
+				text-align: center;
+				line-height: 400px;
+				font-weight: 1000;
+				font-size: 28px;
+				position: relative;
+				text-shadow: 5px 5px 10px;
+				display: none;
+				box-shadow: 94px 60px 76px #f0ffc4 inset;
+				top: 50%;
+				transform: translate(0,-50%);
+			}
+			#clock #quit{
+				position: absolute;
+				z-index: 5;
+				/* bottom: -155px; */
+				/* bottom: -217px; */
+				bottom: 0;
+				left: 50%;
+				margin-left: -27.5px;
+				color: #00FFFF;
+				opacity: 0;
+				height: 38px;
+				line-height: 38px;
+			}
+			#clock #content{
+				display: flex;
+				height: 2ch;
+				position: absolute;
+				top: 45%;
+				left: 50%;
+				flex-wrap: wrap;
+				width: 100%;
+				transform: translate(-45%);
+			}
+			#clock span{
+				background: url(images/8.png);
+				display: inline-block;
+				width: 1.8ch;
+				height: 2ch;
+				background-size: 18.5ch;
+				background-position-y: 111px; 
+				margin: 0 5px;
+			}
+			#clock #m{
+				display: flex;
+				position: absolute;
+				top: 58%;
+				left: 16%;
+			}
+			#clock b{
+				display: inline-block;
+				height: 2ch;
+				line-height: 1.1;
+			}
+		</style>
+		<script src="./js/myAnimation2.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script>
+			window.onload = function(){
+				var flag = true;
+				var timelist = document.querySelectorAll("#clock span");
+				var count = 0;
+				//获取格式化时间
+				function nowNumTime(){
+					var now = new Date();
+					var Year = now.getFullYear() + '';
+					var Month = "0" + (now.getMonth()+1);
+					var Day = now .getDate() + '';
+					var Hour = now.toTimeString().slice(0,2);
+					var Minute = now.toTimeString().slice(3,5);
+					var Second = now.toTimeString().slice(6,8);
+					// var NumTime = Year + Month + Day + Time;
+					return [Year,Month,Day,Hour,Minute,Second];
+				}
+				//实时跟进
+				setInterval(function(){
+					console.log(nowNumTime());
+					nowNumTime().forEach((item,index)=>{
+						for (let i in item){
+							timelist[count].style.backgroundPositionX = -item[i] * 31.8 + "px";
+							count++;
+						}
+						// timelist[index].style.backgroundPositionY = 
+					});						
+					count = 0;
+					// content.innerHTML = nowNumTime();
+				},1000)
+				//与实时跟进同步执行，延迟一秒
+				setTimeout(function(){
+					clock.style.display = 'block';
+					//检测白天黑夜，显示对应样式
+					var bws = parseInt(content.innerHTML.slice(-8,-6));
+					if(bws > 17 || bws < 5){
+						clock.style.boxShadow = '94px 60px 76px inset';
+					}else{
+						clock.style.boxShadow = '0 0 103px #f0ffc4 inset';
+						clock.style.backgroundColor = 'darkgrey';
+					}
+					//设置一个运动标杆
+					flag = true;
+					//开始运动
+					timer1 = setInterval(time1,40);
+				},1000);
+				//设置向右运动
+				function time1(){
+					//向右运动，为加
+					let w = (document.body || document.documentElement).offsetWidth;
+					if(clock.offsetLeft <= w - 400 - (w - 1228) ){
+						clock.style.left = clock.offsetLeft + 10 +'px';
+						// console.log(1);
+						//右运动true
+						flag = true;
+					}else{
+						//达到临界，清除定时器，并开启左运动轨
+						clearInterval(timer1);
+						timer2 = setInterval(time2,40)
+					}
+				}
+				//设置左运动
+				function time2(){
+					//达到临界，清除定时器，并开启右运动轨
+					if(clock.offsetLeft <= 0){
+						clearInterval(timer2);
+						timer1 = setInterval(time1,40);
+					}else{
+						//向左运动，为减
+						clock.style.left = clock.offsetLeft - 10 +'px';
+						// console.log(2);
+						//左运动false
+						flag = false;
+					}
+				}
+				//鼠标悬停互动——停止运动，变换样式，显示离开页面按钮
+				clock.onmouseover = function(e){
+					e = e || window.event;
+					e.stopImmediatePropagation();
+					//bug:球停之后鼠标悬浮到"离开"上依然触发事件(target)
+					// 23.618:冒泡了
+					//停止运动
+					if(flag){
+						clearInterval(timer1);
+					}else{
+						clearInterval(timer2);
+					}
+					//变换样式
+					startAnimation(clock,{'borderRadius':100},function(){
+						startAnimation(clock,{'height':500},function(){
+							startAnimation(quit,{'bottom':50,'opacity':100});
+							
+						});
+					});
+				}
+				//鼠标离开互动——再次运动，重置样式
+				clock.onmouseout = function(){
+					//再次运动
+					if(flag){
+						timer1 = setInterval(time1,40);
+					}else{
+						timer2 = setInterval(time2,40);
+					}
+					//重置样式
+					startAnimation(quit,{'bottom':0,'opacity':0});
+					startAnimation(clock,{'height':400},function(){
+						startAnimation(clock,{'borderRadius':200});
+					});
+				}
+			}
+			
+			//其他操作(测试)
+			function shutdown(){
+				if(confirm('确定离开？')){
+					//网上复制的代码，时灵时不灵
+					window.opener=null;
+					window.open('','_self');
+					window.close();
+				}
+			}
+			document.onvisibilitychange = function(){
+				if(document.hidden){
+					document.title = '一个时钟';
+				}else{
+					document.title = 'name';
+				}
+			}
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<div id="back"></div>
+	<div class="toper">
+		<img src="images/toper.jpg">
+	</div>
+	<ul class="header">
+		<div class="container">
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="javascript:;">JS作品</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习教程</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习视频</a>
+			</li>
+			<li>
+				<a href="javascript:;">论坛</a>
+			</li>
+		</div>
+	</ul>
+	<div class="main">
+		<div class="container">
+			<div class="works">
+				<div class="works_tocket">作品展示</div>
+				<div id="clock">
+					<p id="content">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<b>-</b>
+						<span></span>
+						<span></span>
+						<b>-</b>
+						<span></span>
+						<span></span>
+						<p id="m">
+							<span></span>
+							<span></span>
+							<b>:</b>
+							<span></span>
+							<span></span>
+							<b>:</b>
+							<span></span>
+							<span></span>
+						</p>
+					</p>
+					<a href="javascript:;" onclick = shutdown() id="quit">离开</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="context">
+				<p>2023.6版权所有©信息工程系322移动应用开发1班</p>
+				<p>设计制作：22303590133 唐亿林</p>
+			</div>
+		</div>
+ 	</div>
+		
+	</body>
+</html>

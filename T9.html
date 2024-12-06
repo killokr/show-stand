@@ -1,0 +1,105 @@
+	<style type="text/css">
+		*{ margin: 0; padding: 0; text-decoration: none; list-style-type: none; }
+		html{ background-color: #343334; }
+		body{ background: radial-gradient(#D1D1D1,transparent); overflow-x: hidden; }
+		#back{ pointer-events: none; }
+		span.pixal{ position: absolute; left: -5px; top: -5px; width: 4px; height: 4px; background-color: #fff; z-index: 6; }
+		.container{ width: 90%; margin: 0 auto; }
+		a img{ width: 100%; height: 100%; }
+		.toper{ overflow: hidden; }
+		.toper img{ width: 100%; height: 200px; float: left; }
+		.header{ height: 40px; line-height: 40px; background-color: #000; color: #fff; }
+		.header li{ float: left; width: 100px; text-align: center; cursor: pointer; } 
+		.header li a{ color: #fff; }
+		.main{ margin: 50px 0; }
+		.main .container{ width: 1228px; }
+		.main .works{ position: relative; border: 1px solid #FFCB6B; height: 655px; }
+		.main .works .works_tocket{ position: absolute; background-color: #FFB52D; color: #FF0900; width: 90px; height: 35px; text-align: center; line-height: 35px; top: -30px; left: 10px; }
+		.footer{ height: 150px; background: linear-gradient(to top,#000,#3E3E3E,transparent); color: #fff; text-align: center; position: relative; }
+		.footer .context{ transform: translate(-50%,-50%); position: absolute; top: 50%; left: 50%; }
+		.footer .context p:first-child{ margin-bottom: 10px; }
+		/*首页*/
+
+		.box{ width: 800px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; font-size: 60px; }
+		.box select{ font-size: 36px; background: none; border: none; width: 180px; }
+		.box select:focus-visible{ outline: none; }
+	</style>
+
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			/*可能：
+				1.检测选中省，开始动画
+				2.劫持市选择框
+				3.动画完成，更新市选择框
+			*/
+			let p = document.querySelector("#province");
+			let r = document.querySelector("#region");
+			const plist = ["广西省","广东省","河北省","山西省","江苏省","浙江省"];
+			const rlist = [
+			["南宁市", "柳州市", "桂林市", "梧州市", "北海市", "防城港市", "钦州市", "贵港市", "玉林市", "百色市", "贺州市", "河池市"],["广州市","韶关市","深圳市","珠海市","汕头市","佛山市","江门市","湛江市","茂名市","肇庆市","惠州市","梅州市","汕尾市","河源市","阳江市","清远市","东莞市","中山市","潮州市","揭阳市","云浮市"],["石家庄市", "唐山市", "秦皇岛市", "邯郸市", "邢台市", "保定市", "张家口市", "承德市", "沧州市", "廊坊市", "衡水市"],["太原市", "大同市", "阳泉市", "长治市", "晋城市", "朔州市", "晋中市", "运城市", "忻州市", "临汾市", "吕梁市"],["南京市", "无锡市", "徐州市", "常州市", "苏州市", "南通市", "连云港市", "淮安市", "盐城市", "扬州市", "镇江市", "泰州市", "宿迁市"],["杭州市", "宁波市", "温州市", "嘉兴市", "湖州市", "绍兴市", "金华市", "衢州市", "舟山市", "台州市"]
+			];
+			for (let i = 0; i < plist.length; i++) {
+				let op = document.createElement("option");
+				op.innerText = plist[i];
+				p.appendChild(op);
+			}
+			for (let i = 0; i < rlist[0].length; i++) {
+				let op = document.createElement("option");
+				op.innerText = rlist[0][i];
+				r.appendChild(op);
+			}
+			p.onchange = function(){
+				while(r.children[0]) r[0].remove();
+				for (let i = 0; i < rlist[p.selectedIndex].length; i++) {
+					let op = document.createElement("option");
+					op.innerText = rlist[p.selectedIndex][i];
+					r.appendChild(op);
+				}
+			}
+		}
+	</script>
+	<div id="back"></div>
+	<div class="toper">
+		<img src="images/toper.jpg">
+	</div>
+	<ul class="header">
+		<div class="container">
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="javascript:;">JS作品</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习教程</a>
+			</li>
+			<li>
+				<a href="javascript:;">学习视频</a>
+			</li>
+			<li>
+				<a href="javascript:;">论坛</a>
+			</li>
+		</div>
+	</ul>
+	<div class="main">
+		<div class="container">
+			<div class="works">
+				<div class="works_tocket">作品展示</div>
+				<div class="box">
+					<span>省：</span>
+					<select id="province"></select>
+					<span>市：</span>
+					<select id="region"></select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="context">
+				<p>2023.6版权所有©信息工程系322移动应用开发1班</p>
+				<p>设计制作：22303590133 唐亿林</p>
+			</div>
+		</div>
+ 	</div>
